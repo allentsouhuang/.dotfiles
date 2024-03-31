@@ -1,0 +1,8 @@
+[alias]
+	br = branch
+	st = status
+[user]
+	name = Allen Huang
+	email = huang.allen@gmail.com
+[init]
+	defaultBranch = main
