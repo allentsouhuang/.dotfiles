@@ -1,6 +1,8 @@
 [alias]
 	br = branch
 	st = status
+[core]
+	editor = nvim
 [user]
 	name = Allen Huang
 	email = huang.allen@gmail.com
