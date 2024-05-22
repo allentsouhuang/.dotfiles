@@ -1,14 +1,105 @@
-# Dev Stack
+# linux
 
-- Operating System: macOS
-- System Package Manager: homebrew
-- Terminal: iTerm2
-- Shell: bash
-- Terminal Multiplexer: tmux
-- Version Control: git
-- Editor: neovim
-- Package Manager: Miniconda
-- Notebook: JupyterLab
+So you've ssh-ed into a new linux box.
+
+``` bash 
+
+# I assume you have these essentials already or you have sudo
+sudo apt update
+sudo apt install -y build-essential wget tmux git
+
+# Generate ssh-key
+cd ~/.ssh
+ssh-keygen -o
+# Add it to github
+
+# Go into .dotfiles directory
+cd
+git clone https://github.com/allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
+
+# tmux
+cd
+rm ${HOME}/.tmux.conf
+ln -s .dotfiles/tmux/.tmux.conf .
+
+# git
+rm ${HOME}/.gitconfig
+ln -s .dotfiles/git/.gitconfig .
+
+# bash aliases
+rm ${HOME}/.bash_aliases
+ln -s .dotfiles/bash/.bash_aliases .
+
+# Need nvm, npm, node for pyright to be installed below
+# https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install-latest-npm
+nvm install --lts
+nvm -v
+npm -v
+node -v
+
+# neovim
+
+# Cleanup any existing configs
+rm -rfv ${HOME}/nvim-linux64/
+rm -rf ${HOME}/.local/share/nvim/
+rm -rf ${HOME}/.config/nvim
+
+# Go to `https://github.com/neovim/neovim/releases` and choose a release that you want.
+# Under assets, right click on the link that looks like nvim-linux64.tar.gz and copy the link.
+curl -LO https://github.com/neovim/neovim/releases/download/v0.10.0/nvim-linux64.tar.gz
+tar xzvf nvim-linux64.tar.gz
+rm nvim-linux64.tar.gz
+echo 'export PATH=${PATH}:${HOME}/nvim-linux64/bin' >> ~/.bashrc 
+echo 'alias vim='nvim >> ~/.bashrc 
+
+mkdir .config
+cd .config
+ln -s ~/.dotfiles/neovim/.config/nvim .
+cd
+vim -v 
+vim .  # watch it install all the packages!
+
+tmux new-session -d -s main
+tmux new-session -d -s code
+tmux new-session -d -s servers
+```
+
+``` bash
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
+~/miniconda3/bin/conda init bash
+source ~/.bashrc
+conda update --yes -n base -c defaults conda
+
+conda env create -f /home/ubuntu/.dotfiles/conda/environment.yml
+conda activate ai
+jupyter lab build
+```
+
+``` bash
+jupyter lab --port 8889
+# Look for token in /home/ubuntu/.jupyter/jupyter_config.py
+
+# On the local machine
+ssh -N -L 8889:localhost:8889 lambda
+```
+
+``` python
+import torch
+print(torch.__version__)
+print(torch.version.cuda)
+print(torch.backends.cudnn.version())
+print(torch.cuda.get_device_name(0))
+print(torch.cuda.get_device_properties(0))
+print(f"{torch.cuda.is_available()=}")
+```
+
+# macOS
 
 ## Homebrew
 

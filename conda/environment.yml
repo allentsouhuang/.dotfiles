@@ -1,0 +1,34 @@
+name: ai
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  - python >= 3.10
+  - pytorch
+  - pytorch-cuda=12.1
+  - torchvision
+  - pandas
+  - numpy
+  - matplotlib
+  - tqdm
+  - requests
+  - ipdb
+  - pdbpp
+  - jupyterlab
+  - ipywidgets
+  - nodejs
+  - scipy
+  - scikit-learn
+  - pillow
+  - pip
+  - pip:
+    - timm
+    - transformers
+    - diffusers
+    - accelerate
+    - einops
+    - opencv-contrib-python
+    - tiktoken
+    - blobfile
+
