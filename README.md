@@ -99,6 +99,10 @@ print(torch.cuda.get_device_properties(0))
 print(f"{torch.cuda.is_available()=}")
 ```
 
+```
+conda env update --file /home/ubuntu/.dotfiles/conda/environment.yml --prune
+```
+
 # macOS
 
 ## Homebrew

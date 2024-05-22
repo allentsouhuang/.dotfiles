@@ -4,7 +4,7 @@ channels:
   - pytorch
   - nvidia
 dependencies:
-  - python >= 3.10
+  - python=3.11  # 2.2.2 pytorch's torch.compile does not work with 3.12 yet
   - pytorch
   - pytorch-cuda=12.1
   - torchvision
@@ -31,4 +31,5 @@ dependencies:
     - opencv-contrib-python
     - tiktoken
     - blobfile
+    - datasets
 
