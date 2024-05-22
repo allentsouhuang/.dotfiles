@@ -48,6 +48,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Shortcut to tunnel
 alias t='ssh -N -L 8080:localhost:8080 jarvis'
+alias tl='ssh -N -L 8889:localhost:8889 lambda'
 
 # neovim
 export PATH=${PATH}:${HOME}/nvim-macos/bin
