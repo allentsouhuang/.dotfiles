@@ -1,8 +1,9 @@
 # linux
 
-So you've ssh-ed into a new linux box.
+The checklist required to get a minimal development environment on a fresh linux box.
 
 ``` bash 
+# Add the IP Address into ~/.ssh/config
 
 # I assume you have these essentials already or you have sudo
 sudo apt update
@@ -15,10 +16,9 @@ ssh-keygen -o
 
 # Go into .dotfiles directory
 cd
-git clone https://github.com/allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
+git clone git@github.com:allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
 
 # tmux
-cd
 rm ${HOME}/.tmux.conf
 ln -s .dotfiles/tmux/.tmux.conf .
 
@@ -60,14 +60,16 @@ cd .config
 ln -s ~/.dotfiles/neovim/.config/nvim .
 cd
 vim -v 
+
+source ~/.bashrc
 vim .  # watch it install all the packages!
 
 tmux new-session -d -s main
 tmux new-session -d -s code
 tmux new-session -d -s servers
-```
 
-``` bash
+# Miniconda
+
 mkdir -p ~/miniconda3
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
@@ -79,15 +81,20 @@ conda update --yes -n base -c defaults conda
 conda env create -f /home/ubuntu/.dotfiles/conda/environment.yml
 conda activate ai
 jupyter lab build
-```
 
-``` bash
+# Jupyter Lab
 jupyter lab --port 8889
-# Look for token in /home/ubuntu/.jupyter/jupyter_config.py
+cat ~/.jupyter/jupyter_config.py | grep ServerApp.token
+# Look for ServerApp.token in /home/ubuntu/.jupyter/jupyter_config.py
+# Settings -> Keyboard Shortcuts -> Search -> "Enter Command Mode"
 
-# On the local machine
+## On the local machine; aliased to `tl`
 ssh -N -L 8889:localhost:8889 lambda
+
+wandb login
 ```
+
+Ensure that the following runs as expected.
 
 ``` python
 import torch
@@ -98,6 +105,8 @@ print(torch.cuda.get_device_name(0))
 print(torch.cuda.get_device_properties(0))
 print(f"{torch.cuda.is_available()=}")
 ```
+
+Use this command to update the env when you want to add a dependency.
 
 ```
 conda env update --file /home/ubuntu/.dotfiles/conda/environment.yml --prune
