@@ -1,18 +1,27 @@
 # linux
 
-The checklist required to get a minimal development environment on a fresh linux box.
+Exactly what is required to a get a minimal dev environment on a fresh linux box.
 
 ``` bash 
+
+##################################################
+# Preliminaries
+##################################################
+
 # Add the IP Address into ~/.ssh/config
 
 # I assume you have these essentials already or you have sudo
 sudo apt update
 sudo apt install -y build-essential wget tmux git
 
-# Generate ssh-key
+# Generate ssh-key 
 cd ~/.ssh
 ssh-keygen -o
 # Add it to github
+
+##################################################
+# Dotfiles
+##################################################
 
 # Go into .dotfiles directory
 cd
@@ -30,17 +39,22 @@ ln -s .dotfiles/git/.gitconfig .
 rm ${HOME}/.bash_aliases
 ln -s .dotfiles/bash/.bash_aliases .
 
+# Having an empty file here will prevent the system from sourcing .profile after .bashrc
+touch .bash_profile
+
+# pdbrc
+ln -s .dotfiles/pdbrc/.pdbrc.py .
+
+##################################################
+# Neovim
+##################################################
+
 # Need nvm, npm, node for pyright to be installed below
 # https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source ~/.bashrc
 nvm install-latest-npm
 nvm install --lts
-nvm -v
-npm -v
-node -v
-
-# neovim
 
 # Cleanup any existing configs
 rm -rfv ${HOME}/nvim-linux64/
@@ -59,16 +73,19 @@ mkdir .config
 cd .config
 ln -s ~/.dotfiles/neovim/.config/nvim .
 cd
-vim -v 
-
 source ~/.bashrc
 vim .  # watch it install all the packages!
 
+##################################################
+# Miniconda
+##################################################
+
+# Set up my tmux flow
+# Attach as creating an environment is sometimes slow.
 tmux new-session -d -s main
 tmux new-session -d -s code
 tmux new-session -d -s servers
-
-# Miniconda
+tmux attach -t main
 
 mkdir -p ~/miniconda3
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
@@ -76,16 +93,20 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm -rf ~/miniconda3/miniconda.sh
 ~/miniconda3/bin/conda init bash
 source ~/.bashrc
+
 conda update --yes -n base -c defaults conda
 
 conda env create -f /home/ubuntu/.dotfiles/conda/environment.yml
 conda activate ai
+
 jupyter lab build
 
+##################################################
 # Jupyter Lab
+##################################################
+
 jupyter lab --port 8889
 cat ~/.jupyter/jupyter_config.py | grep ServerApp.token
-# Look for ServerApp.token in /home/ubuntu/.jupyter/jupyter_config.py
 # Settings -> Keyboard Shortcuts -> Search -> "Enter Command Mode"
 
 ## On the local machine; aliased to `tl`
@@ -105,6 +126,27 @@ print(torch.cuda.get_device_name(0))
 print(torch.cuda.get_device_properties(0))
 print(f"{torch.cuda.is_available()=}")
 ```
+
+Common imports
+
+``` python
+import collections
+from pathlib import Path
+import matplotlib
+import math
+import matplotlib.colors
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from PIL import Image
+```
+
+##################################################
+# Update Conda
+##################################################
 
 Use this command to update the env when you want to add a dependency.
 
