@@ -39,8 +39,9 @@ ln -s .dotfiles/git/.gitconfig .
 rm ${HOME}/.bash_aliases
 ln -s .dotfiles/bash/.bash_aliases .
 
-# Having an empty file here will prevent the system from sourcing .profile after .bashrc
-touch .bash_profile
+# This bash profile just ensures that the bashrc is run last
+rm ${HOME}/.bash_profile
+ln -s .dotfiles/bash_linux/.bash_profile .
 
 # pdbrc
 ln -s .dotfiles/pdbrc/.pdbrc.py .
