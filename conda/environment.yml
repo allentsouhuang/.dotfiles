@@ -22,6 +22,7 @@ dependencies:
   - scikit-learn
   - pillow
   - pip
+  - ripgrep
   - pip:
     - timm
     - transformers
@@ -33,4 +34,5 @@ dependencies:
     - blobfile
     - datasets
     - wandb
+    - jupyter_collaboration
 
