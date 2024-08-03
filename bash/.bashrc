@@ -59,7 +59,7 @@ att_m() {
 }
 
 att_c() {
-    local cluster_name "$1"
+    local cluster_name="$1"
     ssh ${cluster_name} -t tmux attach -t code
 }
 
