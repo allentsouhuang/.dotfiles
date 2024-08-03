@@ -53,6 +53,16 @@ alias ts='ssh -N -L 8000:localhost:8000 lambda'
 alias t1='ssh lambda -t tmux attach -t main'
 alias t2='ssh lambda -t tmux attach -t code'
 
+att_m() {
+    local cluster_name="$1"
+    ssh ${cluster_name} -t tmux attach -t main
+}
+
+att_c() {
+    local cluster_name "$1"
+    ssh ${cluster_name} -t tmux attach -t code
+}
+
 # neovim
 export PATH=${PATH}:${HOME}/nvim-macos/bin
 alias vim='nvim'
