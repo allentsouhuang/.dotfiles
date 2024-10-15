@@ -67,10 +67,10 @@ rm -rf ${HOME}/.config/nvim
 curl -LO https://github.com/neovim/neovim/releases/download/v0.10.0/nvim-linux64.tar.gz
 tar xzvf nvim-linux64.tar.gz
 rm nvim-linux64.tar.gz
-echo 'export PATH=${PATH}:${HOME}/nvim-linux64/bin' >> ~/.bashrc 
+echo 'export PATH=${HOME}/nvim-linux64/bin:${PATH}' >> ~/.bashrc 
 echo 'alias vim='nvim >> ~/.bashrc 
 
-mkdir .config
+mkdir -p .config
 cd .config
 ln -s ~/.dotfiles/neovim/.config/nvim .
 cd
@@ -145,9 +145,7 @@ import torch.nn.functional as F
 from PIL import Image
 ```
 
-##################################################
 # Update Conda
-##################################################
 
 Use this command to update the env when you want to add a dependency.
 
