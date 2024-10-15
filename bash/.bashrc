@@ -48,8 +48,8 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Shortcut to tunnel
 alias t='ssh -N -L 8080:localhost:8080 jarvis'
-alias tl='ssh -N -L 8889:localhost:8889 lambda'
-alias ts='ssh -N -L 8000:localhost:8000 lambda'
+alias tl='ssh -N -L 8889:localhost:8889 jarvis'
+alias ts='ssh -N -L 8000:localhost:8000 jarvis'
 alias t1='ssh lambda -t tmux attach -t main'
 alias t2='ssh lambda -t tmux attach -t code'
 
