@@ -78,6 +78,8 @@ cd
 source ~/.bashrc
 vim .  # watch it install all the packages!
 
+# If you have trouble installing pyright; try removing ~/.local
+
 ##################################################
 # Miniconda
 ##################################################
