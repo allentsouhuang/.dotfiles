@@ -78,6 +78,8 @@ cd
 source ~/.bashrc
 vim .  # watch it install all the packages!
 
+# Set the macro on p to enter __import__('ipdb').set_trace()
+
 # If you have trouble installing pyright; try removing ~/.local
 
 ##################################################
