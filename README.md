@@ -135,21 +135,6 @@ print(f"{torch.cuda.is_available()=}")
 
 Common imports
 
-``` python
-import collections
-from pathlib import Path
-import matplotlib
-import math
-import matplotlib.colors
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from PIL import Image
-```
-
 # Update Conda
 
 Use this command to update the env when you want to add a dependency.
@@ -245,4 +230,11 @@ cd ${HOME}/.dotfiles
 stow neovim
 nvim -v 
 nvim  # watch it install all the packages!
+```
+
+``` bash
+defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 20
+# restart
 ```
