@@ -3,18 +3,17 @@ channels:
   - conda-forge
 dependencies:
   - python=3.12
+  - ipython
+  - ipdb
+  - pdbpp
+  - jupyterlab
+  - ipywidgets
+  - nodejs
   - pip
   - pip:
 
-    - ipython
-    - ipdb
-    - pdbpp
-
     - requests
     - tqdm
-
-    - jupyterlab
-    - ipywidgets
 
     - matplotlib
     - numpy
