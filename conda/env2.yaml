@@ -1,0 +1,31 @@
+name: ai2
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+
+    - ipython
+    - ipdb
+    - pdbpp
+
+    - requests
+    - tqdm
+
+    - jupyterlab
+    - ipywidgets
+
+    - matplotlib
+    - numpy
+    - pandas
+    - opencv-contrib-python
+    - pillow
+
+    - torch
+    - torchvision
+    - einops
+
+    - transformers
+    - datasets
+    

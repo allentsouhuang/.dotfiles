@@ -131,6 +131,7 @@ print(torch.backends.cudnn.version())
 print(torch.cuda.get_device_name(0))
 print(torch.cuda.get_device_properties(0))
 print(f"{torch.cuda.is_available()=}")
+import torchvision
 ```
 
 Common imports
@@ -238,3 +239,5 @@ defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 20
 # restart
 ```
+
+iTerm2 -> Settings -> Profiles -> Terminal -> Silence Bell
