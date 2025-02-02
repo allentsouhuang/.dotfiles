@@ -7,7 +7,7 @@ ln -sf .dotfiles/tmux/.tmux.conf .
 ln -sf .dotfiles/git/.gitconfig .
 
 # bash aliases
-ln -sf .dotfiles/bash/.bash_aliases .
+ln -sf .dotfiles/bash_common/.bash_aliases .
 
 # This bash profile just ensures that the bashrc is run last
 ln -sf .dotfiles/bash_linux/.bash_profile .
@@ -27,19 +27,19 @@ source ~/.bashrc
 conda update --yes -n base -c defaults conda
 conda env create --yes -f ~/.dotfiles/conda/environment.yaml
 
-# setup jupyter
-conda activate ai
-jupyter lab build
-python -m ipykernel install --user --name=ai --display-name="ai"
-mkdir ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
-cd ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
-ln -s ~/.dotfiles/jupyter/shortcuts.jupyterlab-settings .
-cd
+# # setup jupyter
+# conda activate ai
+# jupyter lab build
+# python -m ipykernel install --user --name=ai --display-name="ai"
+# mkdir ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
+# cd ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
+# ln -s ~/.dotfiles/jupyter/shortcuts.jupyterlab-settings .
+# cd
 
-# setup tmux sessions
-tmux new-session -d -s main
-tmux new-session -d -s code
-tmux new-session -d -s servers
+# # setup tmux sessions
+# tmux new-session -d -s main
+# tmux new-session -d -s code
+# tmux new-session -d -s servers
 
-tmux attach -t main
-conda activate ai
+# tmux attach -t main
+# conda activate ai
