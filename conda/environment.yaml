@@ -8,6 +8,7 @@ dependencies:
   - pdbpp
   - jupyterlab
   - ipywidgets
+  - ipykernel
   - nodejs
   - pip
   - pip:

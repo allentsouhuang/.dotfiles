@@ -53,41 +53,30 @@ vim .  # watch it install all the packages!
 # If you have trouble installing pyright; try removing ~/.local
 
 ##################################################
-# Miniconda
-##################################################
-
-# Set up my tmux flow
-# Attach as creating an environment is sometimes slow.
-tmux new-session -d -s main
-tmux new-session -d -s code
-tmux new-session -d -s servers
-tmux attach -t main
-
-##################################################
 # Jupyter Lab
 ##################################################
 
-jupyter lab --port 8889
+jupyter lab --port 8889 --no-browser
 cat ~/.jupyter/jupyter_config.py | grep ServerApp.token
 # Settings -> Keyboard Shortcuts -> Search -> "Enter Command Mode"
 
-## On the local machine; aliased to `tl`
-ssh -N -L 8889:localhost:8889 lambda
-
-wandb login
+## On the local machine
+ssh -N -L 8889:localhost:8889 <>
 ```
 
 Ensure that the following runs as expected.
 
 ``` python
 import torch
+import torchvision
+import transformers
+
 print(torch.__version__)
 print(torch.version.cuda)
 print(torch.backends.cudnn.version())
 print(torch.cuda.get_device_name(0))
 print(torch.cuda.get_device_properties(0))
 print(f"{torch.cuda.is_available()=}")
-import torchvision
 ```
 
 # Conda cheatsheet
@@ -99,8 +88,11 @@ conda create --name <> python=3.12
 # Create from file
 conda env create --yes -f <>
 
-# List
+# List envs
 conda env list
+
+# List packages
+conda list
 
 # Update single dependency
 conda update --yes -n <name> -c <channel> <package>

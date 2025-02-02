@@ -25,12 +25,15 @@ rm -rf ~/miniconda3/miniconda.sh
 ~/miniconda3/bin/conda init bash
 source ~/.bashrc
 conda update --yes -n base -c defaults conda
-conda env create --yes -f ${HOME}/.dotfiles/conda/environment.yaml
+conda env create --yes -f ~/.dotfiles/conda/environment.yaml
 conda activate ai
 jupyter lab build
+python -m ipykernel install --user --name=ai --display-name="ai"
 
 # setup tmux sessions
 tmux new-session -d -s main
 tmux new-session -d -s code
 tmux new-session -d -s servers
+
 tmux attach -t main
+conda activate ai
