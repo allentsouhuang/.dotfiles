@@ -26,5 +26,5 @@ rm -rf ~/miniconda3/miniconda.sh
 source ~/.bashrc
 conda update --yes -n base -c defaults conda
 conda env create --yes -f /home/ubuntu/.dotfiles/conda/environment.yml
-conda activate ai2
+conda activate ai
 jupyter lab build

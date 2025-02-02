@@ -1,4 +1,4 @@
-name: ai2
+name: ai
 channels:
   - conda-forge
 dependencies:
