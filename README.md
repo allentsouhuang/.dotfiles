@@ -15,6 +15,8 @@ git clone https://github.com/allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
 bash .dotfiles/pre_env_setup.sh.sh
 source ~/.bashrc
 bash .dotfiles/env_setup.sh
+source ~/.bashrc
+bash .dotfiles/jupyter_setup.sh
 
 # setup tmux sessions
 tmux new-session -d -s main
@@ -26,7 +28,6 @@ tmux attach -t main
 tmux switch-client -t servers
 conda activate ai
 jupyter lab --port 8889 --no-browser &
-
 tmux switch-client -t main
 conda activate ai
 cat ~/.jupyter/jupyter_config.py | grep ServerApp.token
