@@ -17,6 +17,8 @@ bash .dotfiles/env_setup.sh
 tmux new-session -d -s main
 tmux new-session -d -s code
 tmux new-session -d -s servers
+tmux send-keys -t main "conda activate ai" C-m
+tmux send-keys -t code "conda activate ai" C-m
 tmux send-keys -t servers "conda activate ai && jupyter lab --port 8889 --no-browser" C-m
 tmux send-keys -t main "cat ~/.jupyter/jupyter_config.py | grep ServerApp.token" C-m
 tmux attach -t main
