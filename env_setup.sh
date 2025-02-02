@@ -11,8 +11,9 @@ conda update --yes -n base -c defaults conda
 conda env create --yes -f ~/.dotfiles/conda/environment.yaml
 
 # setup jupyter
+conda init bash
 conda activate ai
-# jupyter lab build
+jupyter lab build
 python -m ipykernel install --user --name=ai --display-name="ai"
 mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
 cd ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
