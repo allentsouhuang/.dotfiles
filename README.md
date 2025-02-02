@@ -5,7 +5,7 @@ Minimal steps to get my preferred dev environment on a fresh linux box.
 ## Preliminaries
 
 ``` bash 
-# Add the IP Address into ~/.ssh/config on mac
+# Add the IP Address into ~/.ssh/config on local machine
 
 sudo apt update
 sudo apt install -y build-essential wget tmux git
@@ -21,17 +21,19 @@ tmux new-session -d -s main
 tmux new-session -d -s code
 tmux new-session -d -s servers
 tmux attach -t main
-```
 
-## Run jupyterlab
-
-``` bash
+# spin up jupyter lab session
+tmux switch-client -t servers
 conda activate ai
-jupyter lab --port 8889 --no-browser
+jupyter lab --port 8889 --no-browser &
+
+tmux switch-client -t main
+conda activate ai
 cat ~/.jupyter/jupyter_config.py | grep ServerApp.token
 
-# On the local machine
-ssh -N -L 8889:localhost:8889 <>
+# on the local machine
+# ssh -N -L 8889:localhost:8889 <>
+# paste in the token
 ```
 
 Ensure that the following can run
