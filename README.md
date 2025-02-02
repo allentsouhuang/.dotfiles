@@ -1,16 +1,26 @@
 # linux
 
-Exactly what is required to a get a minimal dev environment on a fresh linux box.
+Minimal steps to get my preferred dev environment on a fresh linux box.
 
 ## Preliminaries
 
 ``` bash 
 # Add the IP Address into ~/.ssh/config on mac
+
 sudo apt update
 sudo apt install -y build-essential wget tmux git
-cd
+
 git clone https://github.com/allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
-bash .dotfiles/launch.sh
+
+bash .dotfiles/pre_env_setup.sh.sh
+source ~/.bashrc
+bash .dotfiles/env_setup.sh
+
+# setup tmux sessions
+tmux new-session -d -s main
+tmux new-session -d -s code
+tmux new-session -d -s servers
+tmux attach -t main
 ```
 
 ## Run jupyterlab
