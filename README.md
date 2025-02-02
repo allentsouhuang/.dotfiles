@@ -2,24 +2,46 @@
 
 Exactly what is required to a get a minimal dev environment on a fresh linux box.
 
+## Preliminaries
+
 ``` bash 
-
-##################################################
-# Preliminaries
-##################################################
-
 # Add the IP Address into ~/.ssh/config on mac
-
 sudo apt update
 sudo apt install -y build-essential wget tmux git
 cd
 git clone https://github.com/allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
 bash .dotfiles/launch.sh
+```
 
-##################################################
-# Neovim
-##################################################
+## Run jupyterlab
 
+``` bash
+conda activate ai
+jupyter lab --port 8889 --no-browser
+cat ~/.jupyter/jupyter_config.py | grep ServerApp.token
+
+# On the local machine
+ssh -N -L 8889:localhost:8889 <>
+```
+
+Ensure that the following can run
+
+``` python
+import torch
+import torchvision
+import transformers
+
+print(torch.__version__)
+print(torch.version.cuda)
+print(torch.backends.cudnn.version())
+print(torch.cuda.get_device_name(0))
+print(torch.cuda.get_device_properties(0))
+print(f"{torch.cuda.is_available()=}")
+```
+
+## Neovim
+
+``` bash
 # Need nvm, npm, node for pyright to be installed below
 # https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
@@ -51,37 +73,11 @@ vim .  # watch it install all the packages!
 # Set the macro on p to enter __import__('ipdb').set_trace()
 
 # If you have trouble installing pyright; try removing ~/.local
-
-##################################################
-# Jupyter Lab
-##################################################
-
-jupyter lab --port 8889 --no-browser
-cat ~/.jupyter/jupyter_config.py | grep ServerApp.token
-# Settings -> Keyboard Shortcuts -> Search -> "Enter Command Mode"
-
-## On the local machine
-ssh -N -L 8889:localhost:8889 <>
-```
-
-Ensure that the following runs as expected.
-
-``` python
-import torch
-import torchvision
-import transformers
-
-print(torch.__version__)
-print(torch.version.cuda)
-print(torch.backends.cudnn.version())
-print(torch.cuda.get_device_name(0))
-print(torch.cuda.get_device_properties(0))
-print(f"{torch.cuda.is_available()=}")
 ```
 
 # Conda cheatsheet
 
-```
+``` bash
 # Create
 conda create --name <> python=3.12
 

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# turn on tracing
+set -x
+
 # tmux
 ln -sf .dotfiles/tmux/.tmux.conf .
 
@@ -20,26 +23,29 @@ mkdir -p ~/miniconda3
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm -rf ~/miniconda3/miniconda.sh
+~/miniconda3/bin/conda init bash
+
+# setup tmux sessions; side effect: opens a new shell
+tmux new-session -d -s main
+tmux new-session -d -s code
+tmux new-session -d -s servers
+tmux attach -t main
 
 # setup conda environment
-~/miniconda3/bin/conda init bash
 source ~/.bashrc
 conda update --yes -n base -c defaults conda
 conda env create --yes -f ~/.dotfiles/conda/environment.yaml
 
 # # setup jupyter
-# conda activate ai
-# jupyter lab build
-# python -m ipykernel install --user --name=ai --display-name="ai"
-# mkdir ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
-# cd ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
-# ln -s ~/.dotfiles/jupyter/shortcuts.jupyterlab-settings .
-# cd
+conda activate ai
+jupyter lab build
+python -m ipykernel install --user --name=ai --display-name="ai"
+mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
+cd ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
+ln -s ~/.dotfiles/jupyter/shortcuts.jupyterlab-settings .
+cd
 
-# # setup tmux sessions
-# tmux new-session -d -s main
-# tmux new-session -d -s code
-# tmux new-session -d -s servers
+# turn off tracing
+set +x
 
-# tmux attach -t main
-# conda activate ai
+echo "Success!"
