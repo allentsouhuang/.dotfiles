@@ -14,6 +14,7 @@ sudo apt update
 sudo apt install -y build-essential wget tmux git
 cd
 git clone https://github.com/allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
+bash .dotfiles/launch.sh
 
 ##################################################
 # Neovim
