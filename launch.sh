@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
 # tmux
-ln -s .dotfiles/tmux/.tmux.conf .
+ln -sf .dotfiles/tmux/.tmux.conf .
 
 # git
-ln -s .dotfiles/git/.gitconfig .
+ln -sf .dotfiles/git/.gitconfig .
 
 # bash aliases
-ln -s .dotfiles/bash/.bash_aliases .
+ln -sf .dotfiles/bash/.bash_aliases .
 
 # This bash profile just ensures that the bashrc is run last
-ln -s .dotfiles/bash_linux/.bash_profile .
+ln -sf .dotfiles/bash_linux/.bash_profile .
 
 # pdbrc
-ln -s .dotfiles/pdbrc/.pdbrc.py .
+ln -sf .dotfiles/pdbrc/.pdbrc.py .
 
 # install miniconda
 mkdir -p ~/miniconda3

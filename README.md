@@ -130,7 +130,7 @@ brew upgrade
 brew cleanup
 
 # Minimal installs
-brew install bash tmux git stow
+brew install bash tmux git
 ```
 
 Source: https://brew.sh/
@@ -138,22 +138,15 @@ Source: https://brew.sh/
 ## Install configs
 
 ``` bash
-# Go into .dotfiles directory
 git clone https://github.com/allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
-cd ${HOME}/.dotfiles
 
-# bash
-rm ${HOME}/.bashrc
-rm ${HOME}/.bash_profile
-stow bash
+cd
+ln -sf ${HOME}/.dotfiles/bash_mac/.bash_aliases .
+ln -sf ${HOME}/.dotfiles/bash_mac/.bash_profile .
+ln -sf ${HOME}/.dotfiles/bash_mac/.bashrc .
+ln -sf ${HOME}/.dotfiles/tmux/.tmux.conf .
+ln -sf ${HOME}/.dotfiles/.gitconfig .
 
-# tmux
-rm ${HOME}/.tmux.conf
-stow tmux
-
-# git
-rm ${HOME}/.gitconfig
-stow git
 ```
 
 ## Neovim
