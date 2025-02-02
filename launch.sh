@@ -21,14 +21,20 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm -rf ~/miniconda3/miniconda.sh
 
-# setup environment
+# setup conda environment
 ~/miniconda3/bin/conda init bash
 source ~/.bashrc
 conda update --yes -n base -c defaults conda
 conda env create --yes -f ~/.dotfiles/conda/environment.yaml
+
+# setup jupyter
 conda activate ai
 jupyter lab build
 python -m ipykernel install --user --name=ai --display-name="ai"
+mkdir ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
+cd ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension
+ln -s ~/.dotfiles/jupyter/shortcuts.jupyterlab-settings .
+cd
 
 # setup tmux sessions
 tmux new-session -d -s main

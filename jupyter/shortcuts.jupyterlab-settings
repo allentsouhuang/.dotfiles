@@ -1,0 +1,19 @@
+{
+    "shortcuts": [
+        {
+            "command": "notebook:enter-command-mode",
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "disabled": true,
+            "keys": [
+                "Ctrl M"
+            ]
+        },
+        {
+            "command": "notebook:enter-command-mode",
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "keys": [
+                "Ctrl ["
+            ]
+        }
+    ]
+}
