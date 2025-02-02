@@ -13,7 +13,7 @@ Exactly what is required to a get a minimal dev environment on a fresh linux box
 sudo apt update
 sudo apt install -y build-essential wget tmux git
 cd
-git clone git@github.com:allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
+git clone https://github.com/allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
 
 ##################################################
 # Neovim
@@ -21,7 +21,7 @@ git clone git@github.com:allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
 
 # Need nvm, npm, node for pyright to be installed below
 # https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 source ~/.bashrc
 nvm install node
 nvm install-latest-npm

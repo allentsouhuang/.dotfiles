@@ -3,19 +3,15 @@
 set -euo pipefail
 
 # tmux
-rm ${HOME}/.tmux.conf
 ln -s .dotfiles/tmux/.tmux.conf .
 
 # git
-rm ${HOME}/.gitconfig
 ln -s .dotfiles/git/.gitconfig .
 
 # bash aliases
-rm ${HOME}/.bash_aliases
 ln -s .dotfiles/bash/.bash_aliases .
 
 # This bash profile just ensures that the bashrc is run last
-rm ${HOME}/.bash_profile
 ln -s .dotfiles/bash_linux/.bash_profile .
 
 # pdbrc
