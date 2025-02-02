@@ -8,43 +8,12 @@ Exactly what is required to a get a minimal dev environment on a fresh linux box
 # Preliminaries
 ##################################################
 
-# Add the IP Address into ~/.ssh/config
+# Add the IP Address into ~/.ssh/config on mac
 
-# I assume you have these essentials already or you have sudo
 sudo apt update
 sudo apt install -y build-essential wget tmux git
-
-# Generate ssh-key 
-cd ~/.ssh
-ssh-keygen -o
-# Add it to github
-
-##################################################
-# Dotfiles
-##################################################
-
-# Go into .dotfiles directory
 cd
 git clone git@github.com:allentsouhuang/.dotfiles.git ${HOME}/.dotfiles
-
-# tmux
-rm ${HOME}/.tmux.conf
-ln -s .dotfiles/tmux/.tmux.conf .
-
-# git
-rm ${HOME}/.gitconfig
-ln -s .dotfiles/git/.gitconfig .
-
-# bash aliases
-rm ${HOME}/.bash_aliases
-ln -s .dotfiles/bash/.bash_aliases .
-
-# This bash profile just ensures that the bashrc is run last
-rm ${HOME}/.bash_profile
-ln -s .dotfiles/bash_linux/.bash_profile .
-
-# pdbrc
-ln -s .dotfiles/pdbrc/.pdbrc.py .
 
 ##################################################
 # Neovim
@@ -93,20 +62,6 @@ tmux new-session -d -s code
 tmux new-session -d -s servers
 tmux attach -t main
 
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm -rf ~/miniconda3/miniconda.sh
-~/miniconda3/bin/conda init bash
-source ~/.bashrc
-
-conda update --yes -n base -c defaults conda
-
-conda env create -f /home/ubuntu/.dotfiles/conda/environment.yml
-conda activate ai
-
-jupyter lab build
-
 ##################################################
 # Jupyter Lab
 ##################################################
@@ -134,13 +89,22 @@ print(f"{torch.cuda.is_available()=}")
 import torchvision
 ```
 
-Common imports
-
-# Update Conda
-
-Use this command to update the env when you want to add a dependency.
+# Conda cheatsheet
 
 ```
+# Create
+conda create --name <> python=3.12
+
+# Create from file
+conda env create --yes -f <>
+
+# List
+conda env list
+
+# Update single dependency
+conda update --yes -n <name> -c <channel> <package>
+
+# Update from list
 conda env update --file /home/ubuntu/.dotfiles/conda/environment.yml --prune
 ```
 

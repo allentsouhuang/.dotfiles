@@ -25,6 +25,8 @@ dependencies:
     - torchvision
     - einops
 
+    - tiktoken
     - transformers
     - datasets
+    - wandb
     
